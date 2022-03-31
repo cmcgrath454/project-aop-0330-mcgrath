@@ -1,0 +1,14 @@
+
+public aspect TraceAspectMcGrath {
+	pointcut myPointCut(): execution(* *.getName());
+	
+	before(): myPointCut() {
+		String info = thisJoinPointStaticPart.getSignature() + ", "
+				+ thisJoinPointStaticPart.getSourceLocation().getLine();
+		System.out.println("Before: " + info);
+	}
+	
+	after(): myPointCut() {
+		System.out.println("After: " + thisJoinPointStaticPart.getSourceLocation().getFileName());
+	}
+}
